@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<definitions xmlns="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:activiti="http://activiti.org/bpmn" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:omgdc="http://www.omg.org/spec/DD/20100524/DC" xmlns:omgdi="http://www.omg.org/spec/DD/20100524/DI" typeLanguage="http://www.w3.org/2001/XMLSchema" expressionLanguage="http://www.w3.org/1999/XPath" targetNamespace="http://www.activiti.org/test">
+  <process id="payreq" name="备用金充值流程" isExecutable="true">
+    <userTask id="commit" name="提交单据" activiti:assignee="${submitter}"></userTask>
+    <userTask id="manager" name="部门经理签字" activiti:assignee="${deptAdmin}"></userTask>
+    <sequenceFlow id="flow2" sourceRef="commit" targetRef="manager"></sequenceFlow>
+    <userTask id="companyManager" name="总经理签字" activiti:assignee="${companyAdmin}" activiti:skipExpression="${approveStatus==&quot;N&quot;}"></userTask>
+    <sequenceFlow id="flow3" sourceRef="manager" targetRef="companyManager"></sequenceFlow>
+    <userTask id="finance" name="财务签字" activiti:assignee="${financeAdmin}" activiti:skipExpression="${approveStatus==&quot;N&quot;}"></userTask>
+    <sequenceFlow id="flow4" sourceRef="companyManager" targetRef="finance"></sequenceFlow>
+    <endEvent id="end" name="结束"></endEvent>
+    <sequenceFlow id="flow5" sourceRef="finance" targetRef="end"></sequenceFlow>
+    <startEvent id="startevent1" name="Start"></startEvent>
+    <sequenceFlow id="flow6" sourceRef="startevent1" targetRef="commit"></sequenceFlow>
+  </process>
+  <bpmndi:BPMNDiagram id="BPMNDiagram_payreq">
+    <bpmndi:BPMNPlane bpmnElement="payreq" id="BPMNPlane_payreq">
+      <bpmndi:BPMNShape bpmnElement="commit" id="BPMNShape_commit">
+        <omgdc:Bounds height="55.0" width="105.0" x="25.0" y="114.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="manager" id="BPMNShape_manager">
+        <omgdc:Bounds height="55.0" width="105.0" x="211.0" y="114.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="companyManager" id="BPMNShape_companyManager">
+        <omgdc:Bounds height="55.0" width="105.0" x="211.0" y="10.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="finance" id="BPMNShape_finance">
+        <omgdc:Bounds height="55.0" width="105.0" x="380.0" y="10.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="end" id="BPMNShape_end">
+        <omgdc:Bounds height="35.0" width="35.0" x="415.0" y="140.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="startevent1" id="BPMNShape_startevent1">
+        <omgdc:Bounds height="35.0" width="35.0" x="60.0" y="20.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge bpmnElement="flow2" id="BPMNEdge_flow2">
+        <omgdi:waypoint x="130.0" y="141.0"></omgdi:waypoint>
+        <omgdi:waypoint x="211.0" y="141.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow3" id="BPMNEdge_flow3">
+        <omgdi:waypoint x="263.0" y="114.0"></omgdi:waypoint>
+        <omgdi:waypoint x="263.0" y="65.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow4" id="BPMNEdge_flow4">
+        <omgdi:waypoint x="316.0" y="37.0"></omgdi:waypoint>
+        <omgdi:waypoint x="380.0" y="37.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow5" id="BPMNEdge_flow5">
+        <omgdi:waypoint x="432.0" y="65.0"></omgdi:waypoint>
+        <omgdi:waypoint x="432.0" y="140.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow6" id="BPMNEdge_flow6">
+        <omgdi:waypoint x="77.0" y="55.0"></omgdi:waypoint>
+        <omgdi:waypoint x="77.0" y="114.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+    </bpmndi:BPMNPlane>
+  </bpmndi:BPMNDiagram>
+</definitions>

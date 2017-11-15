@@ -1,0 +1,41 @@
+{
+"ds":
+	[
+		{
+			"dskey":"default",
+			"driverClassName":"com.mysql.jdbc.Driver",
+			"url":"jdbc:mysql://localhost/yl?autoReconnect=true&failOverReadOnly=false",
+			"username":"yl",
+			"password":"yl",
+			"maxActive":50
+		},
+		{
+			"dskey":"default_oracle",
+			"driverClassName":"oracle.jdbc.driver.OracleDriver",
+			"url":"jdbc:oracle:thin:@127.0.0.1:1521:orcl",
+			"username":"test",
+			"password":"testadmin1"
+		},
+		{
+			"dskey":"74",
+			"driverClassName":"oracle.jdbc.driver.OracleDriver",
+			"url":"jdbc:oracle:thin:@192.168.4.74:1521:yingshou",
+			"username":"water_fct",
+			"password":"water_fct"
+		},
+		{
+			"dskey":"248",
+			"driverClassName":"oracle.jdbc.driver.OracleDriver",
+			"url":"jdbc:oracle:thin:@192.168.31.248:12345:orcl",
+			"username":"xhg_ygcb",
+			"password":"xhg_ygcb"
+		},
+		{
+			"dskey":"mysql",
+			"driverClassName":"com.mysql.jdbc.Driver",
+			"url":"jdbc:mysql://localhost/test",
+			"username":"crm",
+			"password":""
+		}
+	]
+}

@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<definitions xmlns="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:activiti="http://activiti.org/bpmn" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:omgdc="http://www.omg.org/spec/DD/20100524/DC" xmlns:omgdi="http://www.omg.org/spec/DD/20100524/DI" typeLanguage="http://www.w3.org/2001/XMLSchema" expressionLanguage="http://www.w3.org/1999/XPath" targetNamespace="http://www.activiti.org/test">
+  <process id="renew" name="续费下单流程" isExecutable="true">
+    <startEvent id="start" name="开始"></startEvent>
+    <userTask id="commit" name="提交单据" activiti:assignee="${submitter}"></userTask>
+    <sequenceFlow id="flow1" sourceRef="start" targetRef="commit"></sequenceFlow>
+    <userTask id="manager" name="部门经理签字" activiti:assignee="${deptAdmin}"></userTask>
+    <sequenceFlow id="flow2" sourceRef="commit" targetRef="manager"></sequenceFlow>
+    <userTask id="finance" name="财务签字" activiti:assignee="${financeAdmin}" activiti:skipExpression="${approveStatus==&quot;N&quot;}"></userTask>
+    <sequenceFlow id="flow3" sourceRef="manager" targetRef="finance"></sequenceFlow>
+    <userTask id="service" name="客服签字" activiti:assignee="${serviceAdmin}" activiti:skipExpression="${approveStatus==&quot;N&quot;}"></userTask>
+    <sequenceFlow id="flow4" sourceRef="finance" targetRef="service"></sequenceFlow>
+    <endEvent id="end" name="结束"></endEvent>
+    <sequenceFlow id="flow5" sourceRef="service" targetRef="end"></sequenceFlow>
+  </process>
+  <bpmndi:BPMNDiagram id="BPMNDiagram_renew">
+    <bpmndi:BPMNPlane bpmnElement="renew" id="BPMNPlane_renew">
+      <bpmndi:BPMNShape bpmnElement="start" id="BPMNShape_start">
+        <omgdc:Bounds height="35.0" width="35.0" x="30.0" y="150.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="commit" id="BPMNShape_commit">
+        <omgdc:Bounds height="55.0" width="105.0" x="110.0" y="140.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="manager" id="BPMNShape_manager">
+        <omgdc:Bounds height="55.0" width="105.0" x="260.0" y="140.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="finance" id="BPMNShape_finance">
+        <omgdc:Bounds height="55.0" width="105.0" x="410.0" y="140.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="service" id="BPMNShape_service">
+        <omgdc:Bounds height="55.0" width="105.0" x="560.0" y="140.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="end" id="BPMNShape_end">
+        <omgdc:Bounds height="35.0" width="35.0" x="720.0" y="150.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge bpmnElement="flow1" id="BPMNEdge_flow1">
+        <omgdi:waypoint x="65.0" y="167.0"></omgdi:waypoint>
+        <omgdi:waypoint x="110.0" y="167.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow2" id="BPMNEdge_flow2">
+        <omgdi:waypoint x="215.0" y="167.0"></omgdi:waypoint>
+        <omgdi:waypoint x="260.0" y="167.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow3" id="BPMNEdge_flow3">
+        <omgdi:waypoint x="365.0" y="167.0"></omgdi:waypoint>
+        <omgdi:waypoint x="410.0" y="167.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow4" id="BPMNEdge_flow4">
+        <omgdi:waypoint x="515.0" y="167.0"></omgdi:waypoint>
+        <omgdi:waypoint x="560.0" y="167.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow5" id="BPMNEdge_flow5">
+        <omgdi:waypoint x="665.0" y="167.0"></omgdi:waypoint>
+        <omgdi:waypoint x="720.0" y="167.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+    </bpmndi:BPMNPlane>
+  </bpmndi:BPMNDiagram>
+</definitions>
