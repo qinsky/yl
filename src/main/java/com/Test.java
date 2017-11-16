@@ -30,7 +30,7 @@ public class Test {
 		int i = 1;
 		for( ;i<=1000000;i++)
 		{ 
-			ps.setObject(1, "name"+i);
+			ps.setObject(1, "111name"+i);
 		 
 			for(int j=1;j<=10;j++)
 			{ 
